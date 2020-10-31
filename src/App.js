@@ -7,6 +7,7 @@ import ShipmentPage from './pages/ShipmentPage';
 import ShipmentListPage from './pages/ShipmentListPage';
 import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -26,6 +27,7 @@ function App() {
             <Route path="/shipment-list" component={ShipmentListPage} />
             <Route path="/shipment/:shipmentId" component={ShipmentPage} />
             <Route path="/login" component={LoginPage}></Route>
+            <Route path="/register" component={RegisterPage}></Route>
             <Route component={NotFoundPage} />
           </Switch>
         </div>
