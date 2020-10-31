@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
-import { DropdownButton, Dropdown, Button, Form, Col } from 'react-bootstrap';
+import { Button, Form, Col } from 'react-bootstrap';
 
 // this form component is used to create a new tracking record 
 const ShipmentForm = (props) => {
-    const [carrier, setCarrier] = useState("");
+    const [carrier, setCarrier] = useState("select carrier");
     const [trackingNum, setTrackingNum] = useState("");
     const [comment, setComment] = useState("");
-    const [orderURL, setOrderURL] = useState("#");
+    const [orderURL, setOrderURL] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const response = await fetch("/posts/create", {
+    const addTracking = async () => {
+        console.log(carrier);
+        if (trackingNum === "") {
+            alert("Please provide the tracking number");
+            return;
+        }
+        if (comment === "") {
+            alert("Please input your comment");
+            return;
+        }
+        if (carrier === "select carrier") {
+            console.log("entered");
+            alert("Please select one carrier");
+            return;
+        }
+        const results = await fetch("/shipment/new", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -22,98 +35,74 @@ const ShipmentForm = (props) => {
                 comment: comment,
                 order_url: orderURL,
             }), 
-        });
-        // the display tracking summary function
-        props.getShipments();
+        }).then((res) => res.json());
 
-        console.log(response);
+        if (results) {
+            const result = results[0];
+            props.onCreateSuccess(result);
+            setCarrier("select carrier");
+            setTrackingNum("");
+            setComment("");
+            setOrderURL("");
+        } else {
+            alert("Something went wrong.");
+        }
     }
-
-    // return (
-    //     <Form>
-    //     <DropdownButton 
-    //         id="dropdown-warning-button" 
-    //         title="Select Carrier" 
-    //         size="sm"
-    //         onSelect={(e)=>setCarrier(e.toLowerCase())}
-    //     >
-    //         <Dropdown.Item>UPS</Dropdown.Item>
-    //         <Dropdown.Item>FedEx</Dropdown.Item>
-    //         <Dropdown.Item>USPS</Dropdown.Item>
-    //     </DropdownButton>
-    //     <input 
-    //         type="text" 
-    //         className="input" 
-    //         value={trackingNum} 
-    //         required
-    //         placeholder="Tracking Number..."
-    //         onChange={e => setTrackingNum(e.target.value)}
-    //     />
-    //     <input 
-    //         type="text" 
-    //         className="input" 
-    //         required
-    //         value={comment} 
-    //         placeholder="Add a remark for your reference"
-    //         onChange={e => setComment(e.target.value)}
-    //     />
-    //     <input 
-    //         type="text" 
-    //         className="input" 
-    //         value={orderURL} 
-    //         placeholder="(Optional)Past the order URL here"
-    //         onChange={e => setOrderURL(e.target.value)}
-    //     />
-    //     <br/>
-    //     <Button
-    //         type="submit"
-    //         variant="outline-dark"
-    //         size="sm"
-    //         onClick={handleSubmit}
-    //     >
-    //         Create
-    //     </Button>
-    //     </Form>
-    // );
 
     return(
         <Form>
         <Form.Row>
             <Form.Group as={Col} controlId="formGridCarrier">
             <Form.Label>Carrier</Form.Label>
-            <Form.Control as="select" defaultValue="UPS">
-                <option>UPS</option>
-                <option>USPS</option>
-                <option>FedEx</option>
+            <Form.Control 
+                as="select" 
+                value={carrier}
+                onChange={(e)=>setCarrier(e.target.value)}
+            >
+                <option value="select carrier">select carrier</option>
+                <option value="ups">UPS</option>
+                <option value="usps">USPS</option>
+                <option value="fedex">FedEx</option>
             </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridTrackingNum">
             <Form.Label>Carrier Tracking Num</Form.Label>
-            <Form.Control type="text" placeholder="Enter Tracking Number..." />
+            <Form.Control 
+                type="text" 
+                placeholder="Enter Tracking Number..." 
+                value={trackingNum}
+                onChange={e => setTrackingNum(e.target.value)}
+            />
             </Form.Group>
 
         </Form.Row>
 
         <Form.Group controlId="formGridComment">
             <Form.Label>Commment</Form.Label>
-            <Form.Control placeholder="Add your remark... e.g seller/item purchased" />
+            <Form.Control 
+                type="text" 
+                placeholder="Add your remark... e.g. seller/item purchased"
+                value={comment}
+                onChange={e => setComment(e.target.value)}
+            />
         </Form.Group>
 
         <Form.Group controlId="formGridOrderURL">
             <Form.Label>Order URL</Form.Label>
-            <Form.Control placeholder="(Optional) Paste the order's link..." />
+            <Form.Control 
+                type="text" 
+                placeholder="(Optional) e.g. https://www.nike.com/orders"
+                value={orderURL}
+                onChange={e => setOrderURL(e.target.value)}
+            />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" onClick={() => addTracking()}>
             Add Tracking
         </Button>
         </Form>
     );
 }
-
-// ShipmentForm.propTypes = {
-//     getShipments: PropTypes.func.isRequired,
-// };
 
 export default ShipmentForm;

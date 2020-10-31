@@ -1,10 +1,9 @@
 import React, { useState, useEffect} from 'react';
-import { Tabs, Tab } from 'react-bootstrap';
+import { Tabs, Tab, Container } from 'react-bootstrap';
 import ShipmentForm from '../components/ShipmentForm';
 import SingleShipment from '../components/SingleShipment'
-import OldShipment from '../components/SingleShipment'
+import OldShipment from '../components/OldShipment'
 
-import '../styles/ShipmentList.css';
 
 function ShipmentListPage() {
   const [trackings, setTrackings] = useState([]);
@@ -33,7 +32,7 @@ function ShipmentListPage() {
       for (let i = 0; i < trackings.length; i++) {
         if (trackings[i]._id === id) {
           const newTrackings = [...trackings];
-          newTrackings.splice(i, 1);
+          newTrackings[i].active = false;
           setTrackings(newTrackings);
           return;
         }
@@ -63,33 +62,43 @@ function ShipmentListPage() {
     }
   };
 
+  function addTracking(value) {
+    const newTrackings = [value, ...trackings];
+    setTrackings(newTrackings);
+  };
+
   return (
-    <div className="shipment-list container">
+    <Container className="shipment-list">
       <h1>Hello, Yeqing</h1>
-      <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="tracking">
         <Tab eventKey="new-tracking" title="New Tracking">
-          <ShipmentForm/>
+          <ShipmentForm onCreateSuccess={addTracking}/>
         </Tab>
-      <Tab eventKey="tracking" title="Trackings">
-        {trackings.map((tracking) => (
-          <SingleShipment 
-            key={tracking._id} 
-            tracking={tracking} 
-            inactiveTracking={inactiveTracking}
-            deleteTracking={deleteTracking}
-          />
-        ))}
-      </Tab>
-      <Tab eventKey="history" title="History" disabled>
-        {trackings.map((tracking) => (
-          <OldShipment 
-            key={tracking._id} 
-            tracking={tracking} 
-          />
-        ))}
-      </Tab>
-    </Tabs>
-    </div>
+        <Tab eventKey="tracking" title="Trackings">
+          {trackings
+            .filter((tracking) => tracking.active)
+            .map((tracking) => (
+            <SingleShipment 
+              key={tracking._id} 
+              tracking={tracking} 
+              inactiveTracking={inactiveTracking}
+              deleteTracking={deleteTracking}
+            />
+          ))}
+        </Tab>
+        <Tab eventKey="history" title="History">
+          {trackings
+            .filter((tracking) => !tracking.active)
+            .map((tracking) => (
+              <OldShipment 
+                key={tracking._id} 
+                tracking={tracking} 
+                deleteTracking={deleteTracking}
+              />
+          ))}
+        </Tab>
+      </Tabs>
+    </Container>
   );
 }
 

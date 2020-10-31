@@ -3,13 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import LoggedIn from './components/LoginContext';
 import HomePage from './pages/HomePage';
-import ShipmentPage from './pages/ShipmentPage';
 import ShipmentListPage from './pages/ShipmentListPage';
 import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState({
@@ -36,7 +33,6 @@ function App() {
           <Switch>
             <Route path="/" component={HomePage} exact />
             <Route path="/shipment-list" component={ShipmentListPage} />
-            <Route path="/shipment/:shipmentId" component={ShipmentPage} />
             <Route path="/login" component={LoginPage}></Route>
             <Route path="/register" component={RegisterPage}></Route>
             <Route component={NotFoundPage} />
