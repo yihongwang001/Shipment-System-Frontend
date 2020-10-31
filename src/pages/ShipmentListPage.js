@@ -1,7 +1,96 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { Tabs, Tab } from 'react-bootstrap';
+import ShipmentForm from '../components/ShipmentForm';
+import SingleShipment from '../components/SingleShipment'
+import OldShipment from '../components/SingleShipment'
 
-const ShipmentListPage = () => {
-  return <h1>Shipment List</h1>;
-};
+import '../styles/ShipmentList.css';
+
+function ShipmentListPage() {
+  const [trackings, setTrackings] = useState([]);
+
+  const getTrackings = async () => {
+    console.log("getting trackings");
+    let trackings = [];
+    try {
+      trackings = await fetch("/shipment/1").then((res) => res.json());
+      console.log("got trackings", trackings);
+    } catch (err) {
+      console.log("error ", err);
+    }
+    setTrackings(trackings)
+  };
+
+  useEffect(() => {
+    getTrackings();
+  }, []); // Only run the first time
+
+  const inactiveTracking = async (id) => {
+    let url = "/shipment/" + id;
+    let result = await fetch(url, {method: 'PUT'}).then((res) => res.json());
+    console.log(result);
+    if (result.success) {
+      for (let i = 0; i < trackings.length; i++) {
+        if (trackings[i]._id === id) {
+          const newTrackings = [...trackings];
+          newTrackings.splice(i, 1);
+          setTrackings(newTrackings);
+          return;
+        }
+      }
+    }
+    else {
+      alert("Something goes wrong.Please try again");
+    }
+  };
+  
+  const deleteTracking = async (id) => {
+    let url = "/shipment/" + id;
+    let result = await fetch(url, {method: 'DELETE'}).then((res) => res.json());
+    console.log(result);
+    if (result.success) {
+      for (let i = 0; i < trackings.length; i++) {
+        if (trackings[i]._id === id) {
+          const newTrackings = [...trackings];
+          newTrackings.splice(i, 1);
+          setTrackings(newTrackings);
+          return;
+        }
+      }
+    }
+    else {
+      alert("Something goes wrong.Please try again");
+    }
+  };
+
+  return (
+    <div className="shipment-list container">
+      <h1>Hello, Yeqing</h1>
+      <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+        <Tab eventKey="new-tracking" title="New Tracking">
+          <ShipmentForm/>
+        </Tab>
+      <Tab eventKey="tracking" title="Trackings">
+        {trackings.map((tracking) => (
+          <SingleShipment 
+            key={tracking._id} 
+            tracking={tracking} 
+            inactiveTracking={inactiveTracking}
+            deleteTracking={deleteTracking}
+          />
+        ))}
+      </Tab>
+      <Tab eventKey="history" title="History" disabled>
+        {trackings.map((tracking) => (
+          <OldShipment 
+            key={tracking._id} 
+            tracking={tracking} 
+          />
+        ))}
+      </Tab>
+    </Tabs>
+    </div>
+  );
+}
 
 export default ShipmentListPage;

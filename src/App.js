@@ -9,6 +9,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   const [loggedIn, setLoggedIn] = useState({
     loggedIn: false,
@@ -44,5 +46,6 @@ function App() {
     </LoggedIn.Provider>
   );
 }
+
 
 export default App;
