@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { Button, Nav, Navbar } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavBar = () => {
   const { loggedIn, setLoggedInHelper } = useContext(LoggedIn);
@@ -22,21 +24,23 @@ const NavBar = () => {
   };
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/shipment-list">Shipments</Link>
-        </li>
-        <li>
-          <button onClick={handleClick}>
-            {loggedIn.loggedIn ? 'Log Out' : 'Log In'}
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">ShipCare</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Item as="li" className="p-1">
+            <Nav.Link href="/">Home</Nav.Link>
+          </Nav.Item>
+          <Nav.Item as="li" className="p-1">
+            <Nav.Link href="/shipment-list">My Shipments</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <Button variant="outline-primary" onClick={handleClick} className="p-1">
+          {loggedIn.loggedIn ? 'Log Out' : 'Log In'}
+        </Button>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
