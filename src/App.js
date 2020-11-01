@@ -10,10 +10,19 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState({
+    loggedIn: false,
+    username: null,
+    userId: null,
+  });
 
-  const setLoggedInHelper = (booleanVal) => {
-    setLoggedIn(booleanVal);
+  const setLoggedInHelper = (loggedIn, username, userId) => {
+    const loginObj = {
+      loggedIn: loggedIn,
+      username: username,
+      userId: userId,
+    };
+    setLoggedIn(loginObj);
   };
 
   return (
