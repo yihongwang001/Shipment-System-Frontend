@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
 
 const LoginPage = () => {
@@ -46,27 +47,30 @@ const LoginPage = () => {
     return <Redirect to="/shipment-list"></Redirect>;
   } else {
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="login-form-email-group">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
             name="email"
             onChange={(evt) => setEmail(evt.target.value)}
           />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
+        </Form.Group>
+
+        <Form.Group controlId="login-form-pwd-group">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             type="password"
-            id="password"
+            placeholder="Password"
             name="password"
             onChange={(evt) => setPassword(evt.target.value)}
           />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
     );
   }
 };
