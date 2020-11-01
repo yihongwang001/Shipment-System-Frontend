@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
 
@@ -50,7 +50,7 @@ const LoginPage = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-8 p-2 m-5">
-            <Form onSubmit={handleSubmit} className="border p-5">
+            <Form onSubmit={handleSubmit} className="border p-5 shadow rounded">
               <h4 className="mb-4 text-center">Sign In</h4>
               <Form.Group controlId="login-form-email-group">
                 <Form.Label>Email address</Form.Label>
@@ -71,6 +71,12 @@ const LoginPage = () => {
                   onChange={(evt) => setPassword(evt.target.value)}
                 />
               </Form.Group>
+
+              <p className="p-4 text-center">
+                Not a member?
+                <Link to="/register">Register</Link>
+              </p>
+
               <Button
                 variant="primary"
                 type="submit"
