@@ -22,7 +22,7 @@ const LoginPage = () => {
       )
       .join('&');
 
-    let response = await fetch('/auth/login', {
+    const response = await fetch('/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -32,16 +32,17 @@ const LoginPage = () => {
       body: formBody,
     });
 
-    console.log(response.status);
-    if (response.status === 200) {
-      setLoggedInHelper(true);
-    }
+    const responseJson = await response.json();
 
-    response = await response.json();
-    console.log(response);
+    console.log(response.status);
+    console.log(responseJson);
+
+    if (response.status === 200) {
+      setLoggedInHelper(true, responseJson.username, responseJson.userId);
+    }
   };
 
-  if (loggedIn) {
+  if (loggedIn.loggedIn) {
     return <Redirect to="/shipment-list"></Redirect>;
   } else {
     return (

@@ -7,13 +7,13 @@ const NavBar = () => {
   const history = useHistory();
 
   const handleClick = async () => {
-    if (!loggedIn) {
+    if (!loggedIn.loggedIn) {
       history.push('/login');
     } else {
       const response = await fetch('/auth/logout');
 
       if (response.status === 200) {
-        setLoggedInHelper(false);
+        setLoggedInHelper(false, null, null);
         history.push('/');
       } else {
         alert('Failed to log out. Please contact the developer.');
@@ -32,7 +32,7 @@ const NavBar = () => {
         </li>
         <li>
           <button onClick={handleClick}>
-            {loggedIn ? 'Log Out' : 'Log In'}
+            {loggedIn.loggedIn ? 'Log Out' : 'Log In'}
           </button>
         </li>
       </ul>
