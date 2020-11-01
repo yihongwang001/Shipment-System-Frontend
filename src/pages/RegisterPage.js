@@ -46,7 +46,7 @@ const RegisterPage = () => {
     return (
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-8 p-2 m-5">
+          <div className="col-6 p-2 m-5">
             <Form onSubmit={handleSubmit} className="border p-5 shadow rounded">
               <h4 className="mb-4 text-center">Sign Up</h4>
               <Form.Group controlId="register-form-username-group">
