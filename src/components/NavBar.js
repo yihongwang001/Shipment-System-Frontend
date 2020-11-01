@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { Button, Nav } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavBar = () => {
   const { loggedIn, setLoggedInHelper } = useContext(LoggedIn);
@@ -22,21 +24,29 @@ const NavBar = () => {
   };
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/shipment-list">Shipments</Link>
-        </li>
-        <li>
-          <button onClick={handleClick}>
-            {loggedIn ? 'Log Out' : 'Log In'}
-          </button>
-        </li>
-      </ul>
-    </nav>
+    // <nav>
+    //   <ul>
+    //     <li>
+    //       <Link to="/">Home</Link>
+    //     </li>
+    //     <li>
+    //       <Link to="/shipment-list">Shipments</Link>
+    //     </li>
+    //     <li>
+    //       <button onClick={handleClick}>
+    //         {loggedIn ? 'Log Out' : 'Log In'}
+    //       </button>
+    //     </li>
+    //   </ul>
+    // </nav>
+    <Nav variant="pills" activeKey="/">
+      <Nav.Item as="li">
+        <Nav.Link href="/">Home</Nav.Link>
+      </Nav.Item>
+      <Nav.Item as="li">
+        <Nav.Link href="/shipment-list">My Shipments</Nav.Link>
+      </Nav.Item>
+    </Nav>
   );
 };
 
