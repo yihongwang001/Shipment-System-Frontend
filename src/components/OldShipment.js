@@ -3,7 +3,6 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 const OldShipment = (props) => {
     
     const tracking = props.tracking;
-    const inactiveTracking = props.inactiveTracking;
     const deleteTracking = props.deleteTracking;
     const statusMap = {
         "AC":"Accepted", 

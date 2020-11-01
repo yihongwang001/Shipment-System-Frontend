@@ -29,7 +29,6 @@ const ShipmentForm = (props) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                user_id: 1,
                 tracking_num: trackingNum,
                 carrier: carrier,
                 comment: comment,

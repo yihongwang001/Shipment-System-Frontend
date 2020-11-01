@@ -7,13 +7,19 @@ import ShipmentListPage from './pages/ShipmentListPage';
 import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState({
+  const defaultLoginInfo = {
     loggedIn: false,
     username: null,
     userId: null,
-  });
+  };
+
+  const localUser = localStorage.getItem('loginInfo');
+  const loginInfo = localUser ? JSON.parse(localUser) : defaultLoginInfo;
+
+  const [loggedIn, setLoggedIn] = useState(loginInfo);
 
   const setLoggedInHelper = (loggedIn, username, userId) => {
     const loginObj = {
@@ -21,9 +27,9 @@ function App() {
       username: username,
       userId: userId,
     };
+    localStorage.setItem('loginInfo', JSON.stringify(loginObj));
     setLoggedIn(loginObj);
   };
-
   return (
     <LoggedIn.Provider value={{ loggedIn, setLoggedInHelper }}>
       <Router>
@@ -32,7 +38,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/" component={HomePage} exact />
-            <Route path="/shipment-list" component={ShipmentListPage} />
+            <PrivateRoute path="/shipment-list" authed={loggedIn.loggedIn} component={ShipmentListPage} />
             <Route path="/login" component={LoginPage}></Route>
             <Route path="/register" component={RegisterPage}></Route>
             <Route component={NotFoundPage} />

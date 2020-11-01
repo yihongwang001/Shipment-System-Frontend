@@ -12,8 +12,19 @@ function ShipmentListPage() {
     console.log("getting trackings");
     let trackings = [];
     try {
-      trackings = await fetch("/shipment/1").then((res) => res.json());
-      console.log("got trackings", trackings);
+      trackings = await fetch("/shipment").then((res) => res.json());
+      if (trackings.loggedIn === false) {
+        localStorage.setItem("loginInfo", JSON.stringify({
+          loggedIn: false,
+          username: null,
+          userId: null,
+        }));
+        window.location.href = '/login';
+        return;
+      } else {
+        console.log("got trackings", trackings);
+      }
+      
     } catch (err) {
       console.log("error ", err);
     }
@@ -66,10 +77,9 @@ function ShipmentListPage() {
     const newTrackings = [value, ...trackings];
     setTrackings(newTrackings);
   };
-
   return (
     <Container className="shipment-list">
-      <h1>Hello, Yeqing</h1>
+      <h1>Hello, {JSON.parse(localStorage.getItem("loginInfo")).username}</h1>
       <Tabs defaultActiveKey="tracking">
         <Tab eventKey="new-tracking" title="New Tracking">
           <ShipmentForm onCreateSuccess={addTracking}/>
