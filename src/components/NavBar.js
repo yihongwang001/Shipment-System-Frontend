@@ -39,13 +39,21 @@ const NavBar = () => {
     //     </li>
     //   </ul>
     // </nav>
-    <Nav variant="pills" activeKey="/">
+    <Nav activeKey="/">
       <Nav.Item as="li">
         <Nav.Link href="/">Home</Nav.Link>
       </Nav.Item>
       <Nav.Item as="li">
         <Nav.Link href="/shipment-list">My Shipments</Nav.Link>
       </Nav.Item>
+      {/* <Nav.Item as="button">
+        <Nav.Link onSelect={handleClick}>
+          {loggedIn.loggedIn ? 'Log Out' : 'Log In'}
+        </Nav.Link>
+      </Nav.Item> */}
+      <Button variant="primary" onClick={handleClick}>
+        {loggedIn.loggedIn ? 'Log Out' : 'Log In'}
+      </Button>
     </Nav>
   );
 };
