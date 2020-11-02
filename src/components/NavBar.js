@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavBar = () => {
   const { loggedIn, setLoggedInHelper } = useContext(LoggedIn);
@@ -37,7 +36,7 @@ const NavBar = () => {
           </Nav.Item>
         </Nav>
         <Button variant="outline-primary" onClick={handleClick} className="p-1">
-          {loggedIn.loggedIn ? 'Log Out' : 'Log In'}
+          {loggedIn.loggedIn ? 'Sign Out' : 'Sign In'}
         </Button>
       </Navbar.Collapse>
     </Navbar>

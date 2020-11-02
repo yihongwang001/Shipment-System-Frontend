@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -43,36 +44,57 @@ const RegisterPage = () => {
     return <Redirect to="/login"></Redirect>;
   } else {
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            onChange={(evt) => setUsername(evt.target.value)}
-          />
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-6 p-2 m-5">
+            <Form onSubmit={handleSubmit} className="border p-5 shadow rounded">
+              <h4 className="mb-4 text-center">Sign Up</h4>
+              <Form.Group controlId="register-form-username-group">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter username"
+                  name="username"
+                  onChange={(evt) => setUsername(evt.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="register-form-email-group">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  name="email"
+                  onChange={(evt) => setEmail(evt.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="register-form-pwd-group">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={(evt) => setPassword(evt.target.value)}
+                />
+              </Form.Group>
+
+              <p className="p-4 text-center">
+                Already have an account?
+                <Link to="/login">Sign In</Link>
+              </p>
+
+              <Button
+                variant="primary"
+                type="submit"
+                className="btn btn-info my-4 btn-block"
+              >
+                Sign Up
+              </Button>
+            </Form>
+          </div>
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            onChange={(evt) => setEmail(evt.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={(evt) => setPassword(evt.target.value)}
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      </div>
     );
   }
 };
