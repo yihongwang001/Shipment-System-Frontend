@@ -7,7 +7,6 @@ import ShipmentListPage from './pages/ShipmentListPage';
 import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const defaultLoginInfo = {
@@ -38,11 +37,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/" component={HomePage} exact />
-            <PrivateRoute
-              path="/shipment-list"
-              authed={loggedIn.loggedIn}
-              component={ShipmentListPage}
-            />
+            <Route path="/shipment-list" component={ShipmentListPage}></Route>
             <Route path="/login" component={LoginPage}></Route>
             <Route path="/register" component={RegisterPage}></Route>
             <Route component={NotFoundPage} />
