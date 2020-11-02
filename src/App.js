@@ -38,7 +38,11 @@ function App() {
         <div>
           <Switch>
             <Route path="/" component={HomePage} exact />
-            <PrivateRoute path="/shipment-list" authed={loggedIn.loggedIn} component={ShipmentListPage} />
+            <PrivateRoute
+              path="/shipment-list"
+              authed={loggedIn.loggedIn}
+              component={ShipmentListPage}
+            />
             <Route path="/login" component={LoginPage}></Route>
             <Route path="/register" component={RegisterPage}></Route>
             <Route component={NotFoundPage} />
@@ -48,6 +52,5 @@ function App() {
     </LoggedIn.Provider>
   );
 }
-
 
 export default App;
