@@ -23,3 +23,9 @@ This is the front-end of a delivery tracking system. People could get the latest
 ![login](./ShipCare_login.png 'login')
 ![shipments](./ShipCare_shipments.png 'shipments')
 ![shipment_progress](./ShipCare_shipment_progress.png 'shipment progress')
+
+## How to build
+
+```
+npm run build
+```
