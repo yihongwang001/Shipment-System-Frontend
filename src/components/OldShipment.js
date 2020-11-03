@@ -1,4 +1,11 @@
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import '../styles/OldShipment.css';
+
+library.add(faTrashAlt);
 
 const OldShipment = (props) => {
   const tracking = props.tracking;
@@ -24,30 +31,45 @@ const OldShipment = (props) => {
     comment = tracking.comment;
   }
 
+  let updateTime = '';
+  let address = '';
+  let desc = '';
+  if (tracking.event) {
+    let singleEvent = tracking.event[0];
+    updateTime = singleEvent['carrier_occurred_at'].replace(/[a-zA-Z]/g, ' ');
+    address =
+      singleEvent['city_locality'] +
+      ' ' +
+      singleEvent['state_province'] +
+      ',' +
+      singleEvent['postal_code'];
+    desc = singleEvent['description'];
+  }
+
   return (
-    <Container>
-      <Row className="single-record">
-        <Col lg={2} className="comment">
+    <Container className="inactive-record">
+      <Row>
+        <Col lg={3} className="comment">
           {comment}
         </Col>
-        <Col lg={2} className="traking-num">
-          {tracking.carrier} {tracking.tracking_num}
+        <Col lg={6} className="tracking-num">
+          {tracking.carrier.toUpperCase()} {tracking.tracking_num}
         </Col>
-        <Col lg={2} className="traking-status">
-          {statusMap[tracking.status]}
-        </Col>
-        <Col lg={4} className="tracking-desc">
-          {tracking.carrier_status_desc}
-        </Col>
-        <Col lg={2} className="action">
-          <Button
-            variant="outline-danger"
-            size="sm"
+        <Col lg={3} className="action d-flex justify-content-end">
+          <div
+            className="delete-icon"
             onClick={() => deleteTracking(tracking._id)}
           >
-            Remove
-          </Button>
+            <FontAwesomeIcon icon="trash-alt" />
+            <span className="delete-icon-text">Delete</span>
+          </div>
         </Col>
+      </Row>
+      <Row>
+        <Col className="update-time">{updateTime}</Col>
+        <Col className="traking-status">{statusMap[tracking.status]}</Col>
+        <Col className="address">{address}</Col>
+        <Col className="desc">{desc}</Col>
       </Row>
     </Container>
   );

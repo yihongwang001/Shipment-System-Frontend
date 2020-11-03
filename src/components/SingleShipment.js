@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import PopupDetails from './PopupDetails';
+
 import '../styles/SingleShipment.css';
 
+library.add(faCheck, faTrashAlt);
+
 const SingleShipment = (props) => {
+  const [detailModal, setDetailModal] = useState(false);
   const tracking = props.tracking;
   const inactiveTracking = props.inactiveTracking;
   const deleteTracking = props.deleteTracking;
@@ -27,39 +35,63 @@ const SingleShipment = (props) => {
     comment = tracking.comment;
   }
 
+  let updateTime = '';
+  let address = '';
+  let desc = '';
+  if (tracking.events && tracking.events.length > 0) {
+    let singleEvent = tracking.events[0];
+    updateTime = singleEvent['carrier_occurred_at'].replace(/[a-zA-Z]/g, ' ');
+    address =
+      singleEvent['city_locality'] +
+      ' ' +
+      singleEvent['state_province'] +
+      ' ' +
+      singleEvent['postal_code'];
+    desc = singleEvent['description'];
+  }
+
   return (
-    <Container>
-      <Row className="single-record">
-        <Col lg={2} className="comment">
+    <Container className="active-record">
+      <Row>
+        <Col lg={3} className="comment">
           {comment}
         </Col>
-        <Col lg={2} className="traking-num">
-          {tracking.carrier} {tracking.tracking_num}
+        <Col
+          lg={6}
+          className="tracking-num"
+          onClick={() => setDetailModal(true)}
+        >
+          {tracking.carrier.toUpperCase()} {tracking.tracking_num}
         </Col>
-        <Col lg={2} className="traking-status">
-          {statusMap[tracking.status]}
-        </Col>
-        <Col lg={4} className="tracking-desc">
-          {tracking.carrier_status_desc}
-        </Col>
-
-        <Col lg={2} className="action">
-          <Button
-            variant="outline-success"
-            size="sm"
+        <Col lg={3} className="action d-flex justify-content-end ">
+          <div
+            className="done-icon"
             onClick={() => inactiveTracking(tracking._id)}
           >
-            Done
-          </Button>
-          <Button
-            variant="outline-danger"
-            size="sm"
+            <FontAwesomeIcon icon="check" />
+            <span className="done-icon-text">Archive</span>
+          </div>
+
+          <div
+            className="delete-icon"
             onClick={() => deleteTracking(tracking._id)}
           >
-            Remove
-          </Button>
+            <FontAwesomeIcon icon="trash-alt" />
+            <span className="delete-icon-text">Delete</span>
+          </div>
         </Col>
       </Row>
+      <Row>
+        <Col className="update-time">{updateTime}</Col>
+        <Col className="traking-status">{statusMap[tracking.status]}</Col>
+        <Col className="address">{address}</Col>
+        <Col className="desc">{desc}</Col>
+      </Row>
+      <PopupDetails
+        events={tracking.events}
+        show={detailModal}
+        onHide={() => setDetailModal(false)}
+      />
     </Container>
   );
 };

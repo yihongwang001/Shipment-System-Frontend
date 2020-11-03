@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
+import '../styles/ShipmentForm.css';
 
 // this form component is used to create a new tracking record
 const ShipmentForm = (props) => {
@@ -9,7 +10,6 @@ const ShipmentForm = (props) => {
   const [orderURL, setOrderURL] = useState('');
 
   const addTracking = async () => {
-    console.log(carrier);
     if (trackingNum === '') {
       alert('Please provide the tracking number');
       return;
@@ -19,7 +19,6 @@ const ShipmentForm = (props) => {
       return;
     }
     if (carrier === 'select carrier') {
-      console.log('entered');
       alert('Please select one carrier');
       return;
     }
@@ -49,7 +48,7 @@ const ShipmentForm = (props) => {
   };
 
   return (
-    <Form>
+    <Form className="shipment-form">
       <Form.Row>
         <Form.Group as={Col} controlId="formGridCarrier">
           <Form.Label>Carrier</Form.Label>
@@ -77,7 +76,7 @@ const ShipmentForm = (props) => {
       </Form.Row>
 
       <Form.Group controlId="formGridComment">
-        <Form.Label>Commment</Form.Label>
+        <Form.Label>Comment</Form.Label>
         <Form.Control
           type="text"
           placeholder="Add your remark... e.g. seller/item purchased"
@@ -96,7 +95,7 @@ const ShipmentForm = (props) => {
         />
       </Form.Group>
 
-      <Button variant="primary" onClick={() => addTracking()}>
+      <Button variant="secondary" onClick={() => addTracking()}>
         Add Tracking
       </Button>
     </Form>

@@ -5,6 +5,7 @@ import LoggedIn from '../components/LoginContext';
 import ShipmentForm from '../components/ShipmentForm';
 import SingleShipment from '../components/SingleShipment';
 import OldShipment from '../components/OldShipment';
+import '../styles/ShipmentListPage.css';
 
 function ShipmentListPage() {
   const [trackings, setTrackings] = useState([]);
@@ -12,7 +13,6 @@ function ShipmentListPage() {
 
   const history = useHistory();
   const getTrackings = async () => {
-    console.log('getting trackings');
     let trackings = [];
     try {
       trackings = await fetch('/shipment').then((res) => res.json());
@@ -29,10 +29,10 @@ function ShipmentListPage() {
         history.push('/login');
         return;
       } else {
-        console.log('got trackings', trackings);
+        console.log('got trackings');
       }
     } catch (err) {
-      console.log('error ', err);
+      console.log('error occurs ', err);
     }
     setTrackings(trackings);
   };
@@ -44,7 +44,6 @@ function ShipmentListPage() {
   const inactiveTracking = async (id) => {
     let url = '/shipment/' + id;
     let result = await fetch(url, { method: 'PUT' }).then((res) => res.json());
-    console.log(result);
     if (result.success) {
       for (let i = 0; i < trackings.length; i++) {
         if (trackings[i]._id === id) {
@@ -64,7 +63,6 @@ function ShipmentListPage() {
     let result = await fetch(url, { method: 'DELETE' }).then((res) =>
       res.json()
     );
-    console.log(result);
     if (result.success) {
       for (let i = 0; i < trackings.length; i++) {
         if (trackings[i]._id === id) {
@@ -82,39 +80,45 @@ function ShipmentListPage() {
   function addTracking(value) {
     const newTrackings = [value, ...trackings];
     setTrackings(newTrackings);
+    alert('One tracking record is added successfully!');
   }
+
   return (
-    <Container className="shipment-list">
-      <h1>Hello, {JSON.parse(localStorage.getItem('loginInfo')).username}</h1>
-      <Tabs defaultActiveKey="tracking">
-        <Tab eventKey="new-tracking" title="New Tracking">
-          <ShipmentForm onCreateSuccess={addTracking} />
-        </Tab>
-        <Tab eventKey="tracking" title="Trackings">
-          {trackings
-            .filter((tracking) => tracking.active)
-            .map((tracking) => (
-              <SingleShipment
-                key={tracking._id}
-                tracking={tracking}
-                inactiveTracking={inactiveTracking}
-                deleteTracking={deleteTracking}
-              />
-            ))}
-        </Tab>
-        <Tab eventKey="history" title="History">
-          {trackings
-            .filter((tracking) => !tracking.active)
-            .map((tracking) => (
-              <OldShipment
-                key={tracking._id}
-                tracking={tracking}
-                deleteTracking={deleteTracking}
-              />
-            ))}
-        </Tab>
-      </Tabs>
-    </Container>
+    <div className="shipment-list">
+      <Container>
+        <h1 className="greeting">
+          Hello, {JSON.parse(localStorage.getItem('loginInfo')).username}
+        </h1>
+        <Tabs defaultActiveKey="tracking">
+          <Tab eventKey="new-tracking" title="New Tracking">
+            <ShipmentForm onCreateSuccess={addTracking} />
+          </Tab>
+          <Tab eventKey="tracking" title="Active Trackings">
+            {trackings
+              .filter((tracking) => tracking.active)
+              .map((tracking) => (
+                <SingleShipment
+                  key={tracking._id}
+                  tracking={tracking}
+                  inactiveTracking={inactiveTracking}
+                  deleteTracking={deleteTracking}
+                />
+              ))}
+          </Tab>
+          <Tab eventKey="history" title="Archived Trackings">
+            {trackings
+              .filter((tracking) => !tracking.active)
+              .map((tracking) => (
+                <OldShipment
+                  key={tracking._id}
+                  tracking={tracking}
+                  deleteTracking={deleteTracking}
+                />
+              ))}
+          </Tab>
+        </Tabs>
+      </Container>
+    </div>
   );
 }
 

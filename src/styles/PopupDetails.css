@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+.event-title {
+  background: #dbdbdb;
+  padding: 5px 0;
+  color: #555555;
+}
+
+.event-detail {
+  font-family: 'Karla', sans-serif;
+  color: #555555;
+}
+
+.event-detail:nth-of-type(odd) {
+  background: #dbdbdb;
+}
+
+.event-detail:nth-of-type(even) {
+  background: #f2f2f2;
+}
