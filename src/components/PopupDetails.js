@@ -3,7 +3,11 @@ import '../styles/PopupDetails.css';
 
 const PopupDetails = (props) => {
   const renderDetail = () => {
-    const events = props.events;
+    let events = [];
+    if (props.events) {
+      events = props.events;
+    }
+
     return events.map((event) => (
       <Row key={event.occurred_at} className="event-detail">
         <Col>{event.occurred_at.replace(/[a-zA-Z]/g, ' ')}</Col>

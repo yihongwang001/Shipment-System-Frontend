@@ -40,7 +40,9 @@ const LoginPage = () => {
     console.log(responseJson);
 
     if (response.status === 200) {
-      setLoggedInHelper(true, responseJson.username, responseJson.userId);
+      setLoggedInHelper(true, responseJson.username, responseJson.userId, null);
+    } else {
+      setLoggedInHelper(false, null, null, 'Incorrect email or password');
     }
   };
 
@@ -56,6 +58,7 @@ const LoginPage = () => {
               className="border p-5 shadow rounded bg-light login-form"
             >
               <h4 className="mb-4 text-center">Sign In</h4>
+              <p>{loggedIn.errorMessage ? loggedIn.errorMessage : ''}</p>
               <Form.Group controlId="login-form-email-group">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control

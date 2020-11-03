@@ -13,6 +13,7 @@ function App() {
     loggedIn: false,
     username: null,
     userId: null,
+    errorMessage: null,
   };
 
   const localUser = localStorage.getItem('loginInfo');
@@ -20,11 +21,12 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(loginInfo);
 
-  const setLoggedInHelper = (loggedIn, username, userId) => {
+  const setLoggedInHelper = (loggedIn, username, userId, errorMessage) => {
     const loginObj = {
       loggedIn: loggedIn,
       username: username,
       userId: userId,
+      errorMessage: errorMessage,
     };
     localStorage.setItem('loginInfo', JSON.stringify(loginObj));
     setLoggedIn(loginObj);
