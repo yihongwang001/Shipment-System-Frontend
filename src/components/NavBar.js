@@ -14,7 +14,7 @@ const NavBar = () => {
       const response = await fetch('/auth/logout');
 
       if (response.status === 200) {
-        setLoggedInHelper(false, null, null);
+        setLoggedInHelper(false, null, null, null);
         history.push('/');
       } else {
         alert('Failed to log out. Please contact the developer.');
