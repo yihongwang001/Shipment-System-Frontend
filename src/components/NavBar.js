@@ -35,7 +35,11 @@ const NavBar = () => {
             <Nav.Link href="/shipment-list">My Shipments</Nav.Link>
           </Nav.Item>
         </Nav>
-        <Button variant="outline-primary" onClick={handleClick} className="p-1">
+        <Button
+          variant="outline-secondary"
+          onClick={handleClick}
+          className="p-1"
+        >
           {loggedIn.loggedIn ? 'Sign Out' : 'Sign In'}
         </Button>
       </Navbar.Collapse>

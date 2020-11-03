@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
+import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -47,10 +48,13 @@ const LoginPage = () => {
     return <Redirect to="/shipment-list"></Redirect>;
   } else {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row justify-content-center">
-          <div className="col-6 p-2 m-5">
-            <Form onSubmit={handleSubmit} className="border p-5 shadow rounded">
+          <div className="col-4 p-2 m-5">
+            <Form
+              onSubmit={handleSubmit}
+              className="border p-5 shadow rounded bg-light login-form"
+            >
               <h4 className="mb-4 text-center">Sign In</h4>
               <Form.Group controlId="login-form-email-group">
                 <Form.Label>Email address</Form.Label>

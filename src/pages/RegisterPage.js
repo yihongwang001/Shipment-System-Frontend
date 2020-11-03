@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import '../styles/RegisterPage.css';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -44,10 +45,13 @@ const RegisterPage = () => {
     return <Redirect to="/login"></Redirect>;
   } else {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row justify-content-center">
-          <div className="col-6 p-2 m-5">
-            <Form onSubmit={handleSubmit} className="border p-5 shadow rounded">
+          <div className="col-4 p-2 m-5">
+            <Form
+              onSubmit={handleSubmit}
+              className="border p-5 shadow rounded bg-light register-form"
+            >
               <h4 className="mb-4 text-center">Sign Up</h4>
               <Form.Group controlId="register-form-username-group">
                 <Form.Label>Username</Form.Label>
