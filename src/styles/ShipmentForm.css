@@ -1,0 +1,15 @@
+.shipment-form {
+  padding: 20px 0;
+}
+.shipment-form .form-group label {
+  font-weight: bold;
+  color: #555555;
+}
+
+.shipment-form .form-control {
+  background-color: #f2f2f2;
+}
+
+.shipment-form .form-control:focus {
+  background-color: #dbdbdb;
+}

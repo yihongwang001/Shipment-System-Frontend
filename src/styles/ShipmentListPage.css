@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&family=Rubik&display=swap');
+
+.shipment-list {
+  height: 100vh;
+  background: -webkit-linear-gradient(
+    to top,
+    #636fa4,
+    #e8cbc0
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #636fa4,
+    #e8cbc0
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.shipment-list .nav-tabs a {
+  color: #333333;
+  font-weight: bold;
+}
+
+.shipment-list .nav-tabs .nav-item:focus {
+  background-color: #f2f2f2;
+}
+
+.shipment-list .greeting {
+  color: #333333;
+  padding: 20px 10px 10px 10px;
+  text-transform: capitalize;
+  font-family: 'Rubik', sans-serif;
+  opacity: 0.9;
+}
