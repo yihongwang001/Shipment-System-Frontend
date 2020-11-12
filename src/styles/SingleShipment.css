@@ -58,7 +58,8 @@
   font-size: 20px;
 }
 
-.active-record .done-icon:hover {
+.active-record .done-icon:hover,
+.done-icon:focus {
   color: #5da308;
   cursor: pointer;
 }
@@ -76,7 +77,8 @@
   z-index: 1;
 }
 
-.active-record .done-icon:hover .done-icon-text {
+.active-record .done-icon:hover,
+.done-icon:focus .done-icon-text {
   visibility: visible;
 }
 
@@ -86,7 +88,8 @@
   font-size: 20px;
 }
 
-.active-record .delete-icon:hover {
+.active-record .delete-icon:hover,
+.delete-icon:focus {
   color: #d60d06;
   cursor: pointer;
 }
@@ -104,6 +107,7 @@
   z-index: 1;
 }
 
-.active-record .delete-icon:hover .delete-icon-text {
+.active-record .delete-icon:hover,
+.delete-icon:focus .delete-icon-text {
   visibility: visible;
 }

@@ -59,6 +59,10 @@ const OldShipment = (props) => {
           <div
             className="delete-icon"
             onClick={() => deleteTracking(tracking._id)}
+            tabIndex={0}
+            onKeyPress={(event) => {
+              if (event.key === 'Enter') deleteTracking(tracking._id);
+            }}
           >
             <FontAwesomeIcon icon="trash-alt" />
             <span className="delete-icon-text">Delete</span>
