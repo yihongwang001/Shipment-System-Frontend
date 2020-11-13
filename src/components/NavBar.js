@@ -2,16 +2,18 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import LoggedIn from '../components/LoginContext';
 import '../styles/NavBar.css';
 
 const JumpToMainContent = () => {
-  return (
-    <Link to="#main-content" className="skip-link">
-      Skip To Content
-    </Link>
-  );
+  if (window.location.pathname === '/shipment-list') {
+    return (
+      <a href="#main-content" className="skip-link">
+        Skip To Content
+      </a>
+    );
+  }
+  return <span></span>;
 };
 /*eslint-enable no-unused-vars*/
 

@@ -93,7 +93,7 @@ function ShipmentListPage() {
           <Tab eventKey="new-tracking" title="New Tracking">
             <ShipmentForm onCreateSuccess={addTracking} />
           </Tab>
-          <Tab eventKey="tracking" title="Active Trackings">
+          <Tab id="main-content" eventKey="tracking" title="Active Trackings">
             {trackings
               .filter((tracking) => tracking.active)
               .map((tracking) => (
