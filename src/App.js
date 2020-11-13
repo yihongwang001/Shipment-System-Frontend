@@ -7,6 +7,7 @@ import ShipmentListPage from './pages/ShipmentListPage';
 import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import PrivateRoute from './components/PrivateRoute';
 
 import './App.css';
 
@@ -41,7 +42,11 @@ function App() {
         <div>
           <Switch>
             <Route path="/" component={HomePage} exact />
-            <Route path="/shipment-list" component={ShipmentListPage}></Route>
+            <PrivateRoute
+              path="/shipment-list"
+              component={ShipmentListPage}
+              authed={loggedIn.loggedIn}
+            />
             <Route path="/login" component={LoginPage}></Route>
             <Route path="/register" component={RegisterPage}></Route>
             <Route component={NotFoundPage} />
