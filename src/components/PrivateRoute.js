@@ -3,8 +3,7 @@ import LoggedIn from '../components/LoginContext';
 import { useContext } from 'react';
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-  // eslint-disable-next-line no-unused-vars
-  const { loggedIn, setLoggedInHelper } = useContext(LoggedIn);
+  const { setLoggedInHelper } = useContext(LoggedIn);
 
   if (authed === true) {
     return (
