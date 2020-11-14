@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
@@ -9,6 +9,12 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loggedIn, setLoggedInHelper } = useContext(LoggedIn);
+  const inLoginRef = useRef();
+
+  useEffect(() => {
+    // Give the focus to the email input the first time
+    inLoginRef.current.focus();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,6 +71,7 @@ const LoginPage = () => {
                   type="email"
                   placeholder="Enter email"
                   name="email"
+                  ref={inLoginRef}
                   onChange={(evt) => setEmail(evt.target.value)}
                 />
               </Form.Group>
