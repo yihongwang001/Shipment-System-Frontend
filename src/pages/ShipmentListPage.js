@@ -23,9 +23,10 @@ function ShipmentListPage() {
             loggedIn: false,
             username: null,
             userId: null,
+            errorMessage: null,
           })
         );
-        if (loggedIn.loggedIn) setLoggedInHelper(false, null, null);
+        if (loggedIn.loggedIn) setLoggedInHelper(false, null, null, null);
         history.push('/login');
         return;
       } else {
