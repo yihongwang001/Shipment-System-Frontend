@@ -1,14 +1,21 @@
+/*eslint-disable no-unused-vars*/
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import '../styles/RegisterPage.css';
+/*eslint-enable no-unused-vars*/
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [registered, setRegistered] = useState(false);
+  const usernameRef = useRef();
+
+  useEffect(() => {
+    usernameRef.current.focus();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,6 +66,7 @@ const RegisterPage = () => {
                   type="text"
                   placeholder="Enter username"
                   name="username"
+                  ref={usernameRef}
                   onChange={(evt) => setUsername(evt.target.value)}
                 />
               </Form.Group>

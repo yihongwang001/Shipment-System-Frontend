@@ -1,9 +1,11 @@
+/*eslint-disable no-unused-vars*/
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import PopupDetails from './PopupDetails';
+/*eslint-enable no-unused-vars*/
 
 import '../styles/SingleShipment.css';
 
@@ -60,6 +62,10 @@ const SingleShipment = (props) => {
           lg={6}
           className="tracking-num"
           onClick={() => setDetailModal(true)}
+          tabIndex={0}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') setDetailModal(true);
+          }}
         >
           {tracking.carrier.toUpperCase()} {tracking.tracking_num}
         </Col>
@@ -67,6 +73,10 @@ const SingleShipment = (props) => {
           <div
             className="done-icon"
             onClick={() => inactiveTracking(tracking._id)}
+            tabIndex={0}
+            onKeyPress={(event) => {
+              if (event.key === 'Enter') inactiveTracking(tracking._id);
+            }}
           >
             <FontAwesomeIcon icon="check" />
             <span className="done-icon-text">Archive</span>
@@ -75,6 +85,10 @@ const SingleShipment = (props) => {
           <div
             className="delete-icon"
             onClick={() => deleteTracking(tracking._id)}
+            tabIndex={0}
+            onKeyPress={(event) => {
+              if (event.key === 'Enter') deleteTracking(tracking._id);
+            }}
           >
             <FontAwesomeIcon icon="trash-alt" />
             <span className="delete-icon-text">Delete</span>

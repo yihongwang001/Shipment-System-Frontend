@@ -1,36 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+/*eslint-disable no-unused-vars*/
+import React, { useState, useEffect } from 'react';
 import { Tabs, Tab, Container } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-import LoggedIn from '../components/LoginContext';
 import ShipmentForm from '../components/ShipmentForm';
 import SingleShipment from '../components/SingleShipment';
 import OldShipment from '../components/OldShipment';
 import '../styles/ShipmentListPage.css';
+/*eslint-enable no-unused-vars*/
 
 function ShipmentListPage() {
   const [trackings, setTrackings] = useState([]);
-  const { loggedIn, setLoggedInHelper } = useContext(LoggedIn);
 
-  const history = useHistory();
   const getTrackings = async () => {
     let trackings = [];
     try {
       trackings = await fetch('/shipment').then((res) => res.json());
-      if (trackings.loggedIn === false) {
-        localStorage.setItem(
-          'loginInfo',
-          JSON.stringify({
-            loggedIn: false,
-            username: null,
-            userId: null,
-          })
-        );
-        if (loggedIn.loggedIn) setLoggedInHelper(false, null, null);
-        history.push('/login');
-        return;
-      } else {
-        console.log('got trackings');
-      }
+      console.log(`${trackings.length} shipments in the response.`);
     } catch (err) {
       console.log('error occurs ', err);
     }
@@ -43,37 +27,55 @@ function ShipmentListPage() {
 
   const inactiveTracking = async (id) => {
     let url = '/shipment/' + id;
-    let result = await fetch(url, { method: 'PUT' }).then((res) => res.json());
-    if (result.success) {
-      for (let i = 0; i < trackings.length; i++) {
-        if (trackings[i]._id === id) {
-          const newTrackings = [...trackings];
-          newTrackings[i].active = false;
-          setTrackings(newTrackings);
-          return;
+
+    try {
+      let result = await fetch(url, { method: 'PUT' }).then((res) =>
+        res.json()
+      );
+      if (result.success) {
+        for (let i = 0; i < trackings.length; i++) {
+          if (trackings[i]._id === id) {
+            const newTrackings = [...trackings];
+            newTrackings[i].active = false;
+            setTrackings(newTrackings);
+            break;
+          }
         }
+      } else {
+        alert(`Backend failed to deactivate shipment ID: [${id}]`);
       }
-    } else {
-      alert('Something goes wrong.Please try again');
+    } catch (err) {
+      alert(
+        `Failed to call ${url} [PUT]. Please check console to see error log.`
+      );
+      console.log(err);
     }
   };
 
   const deleteTracking = async (id) => {
     let url = '/shipment/' + id;
-    let result = await fetch(url, { method: 'DELETE' }).then((res) =>
-      res.json()
-    );
-    if (result.success) {
-      for (let i = 0; i < trackings.length; i++) {
-        if (trackings[i]._id === id) {
-          const newTrackings = [...trackings];
-          newTrackings.splice(i, 1);
-          setTrackings(newTrackings);
-          return;
+
+    try {
+      let result = await fetch(url, { method: 'DELETE' }).then((res) =>
+        res.json()
+      );
+      if (result.success) {
+        for (let i = 0; i < trackings.length; i++) {
+          if (trackings[i]._id === id) {
+            const newTrackings = [...trackings];
+            newTrackings.splice(i, 1);
+            setTrackings(newTrackings);
+            break;
+          }
         }
+      } else {
+        alert(`Backend failed to delete shipment ID: [${id}]`);
       }
-    } else {
-      alert('Something goes wrong.Please try again');
+    } catch (err) {
+      alert(
+        `Failed to call ${url} [DELETE]. Please check console to see error log.`
+      );
+      console.log(err);
     }
   };
 
@@ -93,7 +95,7 @@ function ShipmentListPage() {
           <Tab eventKey="new-tracking" title="New Tracking">
             <ShipmentForm onCreateSuccess={addTracking} />
           </Tab>
-          <Tab eventKey="tracking" title="Active Trackings">
+          <Tab id="main-content" eventKey="tracking" title="Active Trackings">
             {trackings
               .filter((tracking) => tracking.active)
               .map((tracking) => (

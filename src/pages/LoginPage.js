@@ -1,14 +1,27 @@
+/*eslint-disable no-unused-vars*/
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
 import '../styles/LoginPage.css';
+/*eslint-enable no-unused-vars*/
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { loggedIn, setLoggedInHelper } = useContext(LoggedIn);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  useEffect(() => {
+    // Give the focus to the email input the first time
+    emailRef.current.focus();
+    if (props.location.state && props.location.state.errorMessage) {
+      setErrorMessage(props.location.state.errorMessage);
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,9 +53,12 @@ const LoginPage = () => {
     console.log(responseJson);
 
     if (response.status === 200) {
-      setLoggedInHelper(true, responseJson.username, responseJson.userId, null);
+      setLoggedInHelper(true, responseJson.username, responseJson.userId);
     } else {
-      setLoggedInHelper(false, null, null, 'Incorrect email or password');
+      setLoggedInHelper(false, null, null);
+      setErrorMessage('Incorrect username or password');
+      emailRef.current.value = '';
+      passwordRef.current.value = '';
     }
   };
 
@@ -58,13 +74,14 @@ const LoginPage = () => {
               className="border p-5 shadow rounded bg-light login-form"
             >
               <h4 className="mb-4 text-center">Sign In</h4>
-              <p>{loggedIn.errorMessage ? loggedIn.errorMessage : ''}</p>
+              <p>{errorMessage}</p>
               <Form.Group controlId="login-form-email-group">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
                   name="email"
+                  ref={emailRef}
                   onChange={(evt) => setEmail(evt.target.value)}
                 />
               </Form.Group>
@@ -75,6 +92,7 @@ const LoginPage = () => {
                   type="password"
                   placeholder="Password"
                   name="password"
+                  ref={passwordRef}
                   onChange={(evt) => setPassword(evt.target.value)}
                 />
               </Form.Group>
