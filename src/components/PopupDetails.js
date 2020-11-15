@@ -1,4 +1,6 @@
+/*eslint-disable no-unused-vars*/
 import { Modal, Container, Row, Col } from 'react-bootstrap';
+/*eslint-enable no-unused-vars*/
 import '../styles/PopupDetails.css';
 
 const PopupDetails = (props) => {

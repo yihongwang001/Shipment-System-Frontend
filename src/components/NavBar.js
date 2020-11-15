@@ -1,5 +1,5 @@
 /*eslint-disable no-unused-vars*/
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';

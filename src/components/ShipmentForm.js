@@ -1,6 +1,8 @@
+/*eslint-disable no-unused-vars*/
 import React, { useState } from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
 import '../styles/ShipmentForm.css';
+/*eslint-enable no-unused-vars*/
 
 // this form component is used to create a new tracking record
 const ShipmentForm = (props) => {
