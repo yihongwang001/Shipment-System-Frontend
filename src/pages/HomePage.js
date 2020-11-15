@@ -1,5 +1,7 @@
+/*eslint-disable no-unused-vars*/
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+/*eslint-enable no-unused-vars*/
 import delivery from '../shipment.png';
 import '../styles/HomePage.css';
 

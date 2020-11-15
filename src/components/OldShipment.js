@@ -1,6 +1,8 @@
+/*eslint-disable no-unused-vars*/
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+/*eslint-enable no-unused-vars*/
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import '../styles/OldShipment.css';

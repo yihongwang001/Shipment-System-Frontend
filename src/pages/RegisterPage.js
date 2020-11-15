@@ -1,8 +1,10 @@
+/*eslint-disable no-unused-vars*/
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import '../styles/RegisterPage.css';
+/*eslint-enable no-unused-vars*/
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');

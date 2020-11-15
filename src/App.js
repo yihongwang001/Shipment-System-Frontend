@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
@@ -8,15 +9,14 @@ import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PrivateRoute from './components/PrivateRoute';
-
 import './App.css';
+/*eslint-enable no-unused-vars*/
 
 function App() {
   const defaultLoginInfo = {
     loggedIn: false,
     username: null,
     userId: null,
-    errorMessage: null,
   };
 
   const localUser = localStorage.getItem('loginInfo');
@@ -24,12 +24,11 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(loginInfo);
 
-  const setLoggedInHelper = (loggedIn, username, userId, errorMessage) => {
+  const setLoggedInHelper = (loggedIn, username, userId) => {
     const loginObj = {
       loggedIn: loggedIn,
       username: username,
       userId: userId,
-      errorMessage: errorMessage,
     };
     localStorage.setItem('loginInfo', JSON.stringify(loginObj));
     setLoggedIn(loginObj);
@@ -44,11 +43,11 @@ function App() {
             <Route path="/" component={HomePage} exact />
             <PrivateRoute
               path="/shipment-list"
-              component={ShipmentListPage}
               authed={loggedIn.loggedIn}
+              component={ShipmentListPage}
             />
-            <Route path="/login" component={LoginPage}></Route>
-            <Route path="/register" component={RegisterPage}></Route>
+            <Route path="/login" render={(props) => <LoginPage {...props} />} />
+            <Route path="/register" component={RegisterPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>

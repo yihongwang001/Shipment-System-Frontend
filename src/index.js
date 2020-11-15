@@ -1,6 +1,8 @@
+/*eslint-disable no-unused-vars*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+/*eslint-enable no-unused-vars*/
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';

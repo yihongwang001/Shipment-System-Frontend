@@ -1,20 +1,24 @@
+/*eslint-disable no-unused-vars*/
 import { BrowserRouter as Route, Redirect } from 'react-router-dom';
-import LoggedIn from '../components/LoginContext';
-import { useContext } from 'react';
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-  const { setLoggedInHelper } = useContext(LoggedIn);
-
+const PrivateRoute = ({ component: Component, authed, path, ...rest }) => {
   if (authed === true) {
     return (
-      <Route>
+      <Route path={path}>
         <Component {...rest} />
       </Route>
     );
   } else {
-    setLoggedInHelper(false, null, null, 'Please login firstly');
-    return <Redirect to="/login" />;
+    return (
+      <Redirect
+        to={{
+          pathname: '/login',
+          state: { errorMessage: 'Please login first' },
+        }}
+      />
+    );
   }
 };
+/*eslint-enable no-unused-vars*/
 
 export default PrivateRoute;
