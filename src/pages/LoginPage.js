@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
 import '../styles/LoginPage.css';
-/*eslint-disable no-unused-vars*/
+/*eslint-enable no-unused-vars*/
 
 const LoginPage = (props) => {
   const [email, setEmail] = useState('');
