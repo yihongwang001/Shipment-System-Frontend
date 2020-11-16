@@ -97,9 +97,8 @@ const RegisterPage = () => {
               </p>
 
               <Button
-                variant="primary"
                 type="submit"
-                className="btn btn-info my-4 btn-block"
+                className="btn btn-secondary my-4 btn-block"
               >
                 Sign Up
               </Button>

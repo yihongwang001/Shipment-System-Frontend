@@ -77,8 +77,11 @@
   z-index: 1;
 }
 
-.active-record .done-icon:hover,
-.done-icon:focus .done-icon-text {
+.active-record .done-icon:hover .done-icon-text {
+  visibility: visible;
+}
+
+.active-record .done-icon:focus .done-icon-text {
   visibility: visible;
 }
 
@@ -107,7 +110,10 @@
   z-index: 1;
 }
 
-.active-record .delete-icon:hover,
-.delete-icon:focus .delete-icon-text {
+.active-record .delete-icon:hover .delete-icon-text {
+  visibility: visible;
+}
+
+.active-record .delete-icon:focus .delete-icon-text {
   visibility: visible;
 }

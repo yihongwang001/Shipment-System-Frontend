@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
 .skip-link {
   position: absolute;
   left: 45%;
@@ -12,4 +14,10 @@
 
 .skip-link:focus {
   transform: translateY(80%);
+}
+
+.navbar {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: large;
 }
