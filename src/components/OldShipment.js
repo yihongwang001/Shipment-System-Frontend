@@ -1,6 +1,5 @@
 /*eslint-disable no-unused-vars*/
 import React, { useState } from 'react';
-
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DeleteConfirm from './DeleteConfirm';
