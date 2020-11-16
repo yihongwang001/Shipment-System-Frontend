@@ -4,12 +4,13 @@
   position: absolute;
   left: 45%;
   transform: translateY(-100%);
-  background: #cbcbcb;
+  background: #eef2f3;
   padding: 2%;
   transition: transform 0.3s;
   font-family: 'Karla', sans-serif;
   font-size: 17px;
   font-weight: 700;
+  text-decoration: underline;
 }
 
 .skip-link:focus {
