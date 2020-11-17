@@ -1,7 +1,8 @@
 /*eslint-disable no-unused-vars*/
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DeleteConfirm from './DeleteConfirm';
 /*eslint-enable no-unused-vars*/
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +11,8 @@ import '../styles/OldShipment.css';
 library.add(faTrashAlt);
 
 const OldShipment = (props) => {
+  const [deleteModal, setDeleteModal] = useState(false);
+
   const tracking = props.tracking;
   const deleteTracking = props.deleteTracking;
   const statusMap = {
@@ -60,10 +63,10 @@ const OldShipment = (props) => {
         <Col lg={3} className="action d-flex justify-content-end">
           <div
             className="delete-icon"
-            onClick={() => deleteTracking(tracking._id)}
+            onClick={() => setDeleteModal(true)}
             tabIndex={0}
             onKeyPress={(event) => {
-              if (event.key === 'Enter') deleteTracking(tracking._id);
+              if (event.key === 'Enter') setDeleteModal(true);
             }}
           >
             <FontAwesomeIcon icon="trash-alt" />
@@ -77,6 +80,12 @@ const OldShipment = (props) => {
         <Col className="address">{address}</Col>
         <Col className="desc">{desc}</Col>
       </Row>
+      <DeleteConfirm
+        show={deleteModal}
+        onHide={() => setDeleteModal(false)}
+        trackingID={tracking._id}
+        deleteRecord={deleteTracking}
+      />
     </Container>
   );
 };

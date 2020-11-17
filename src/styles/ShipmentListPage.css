@@ -16,7 +16,6 @@
 
 .shipment-list .nav-tabs a {
   color: #333333;
-  font-weight: bold;
 }
 
 .shipment-list .nav-tabs .nav-item:focus {
@@ -25,8 +24,9 @@
 
 .shipment-list .greeting {
   color: #333333;
-  padding: 20px 10px 10px 10px;
+  padding: 25px 10px 10px 10px;
   text-transform: capitalize;
   font-family: 'Rubik', sans-serif;
-  opacity: 0.9;
+  font-size: xx-large;
+  opacity: 0.8;
 }

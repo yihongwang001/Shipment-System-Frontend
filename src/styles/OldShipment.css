@@ -72,3 +72,7 @@
 .inactive-record .delete-icon:hover .delete-icon-text {
   visibility: visible;
 }
+
+.inactive-record .delete-icon:focus .delete-icon-text {
+  visibility: visible;
+}

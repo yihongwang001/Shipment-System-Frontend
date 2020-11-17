@@ -1,15 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
 .skip-link {
   position: absolute;
   left: 45%;
   transform: translateY(-100%);
-  background: #cbcbcb;
+  background: #eef2f3;
   padding: 2%;
   transition: transform 0.3s;
   font-family: 'Karla', sans-serif;
   font-size: 17px;
   font-weight: 700;
+  text-decoration: underline;
 }
 
 .skip-link:focus {
   transform: translateY(80%);
+}
+
+.navbar {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: large;
 }

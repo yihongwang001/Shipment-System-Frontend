@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import PopupDetails from './PopupDetails';
+import DeleteConfirm from './DeleteConfirm';
 /*eslint-enable no-unused-vars*/
 
 import '../styles/SingleShipment.css';
@@ -13,6 +14,7 @@ library.add(faCheck, faTrashAlt);
 
 const SingleShipment = (props) => {
   const [detailModal, setDetailModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const tracking = props.tracking;
   const inactiveTracking = props.inactiveTracking;
   const deleteTracking = props.deleteTracking;
@@ -84,10 +86,10 @@ const SingleShipment = (props) => {
 
           <div
             className="delete-icon"
-            onClick={() => deleteTracking(tracking._id)}
+            onClick={() => setDeleteModal(true)}
             tabIndex={0}
             onKeyPress={(event) => {
-              if (event.key === 'Enter') deleteTracking(tracking._id);
+              if (event.key === 'Enter') setDeleteModal(true);
             }}
           >
             <FontAwesomeIcon icon="trash-alt" />
@@ -105,6 +107,12 @@ const SingleShipment = (props) => {
         events={tracking.events}
         show={detailModal}
         onHide={() => setDetailModal(false)}
+      />
+      <DeleteConfirm
+        show={deleteModal}
+        onHide={() => setDeleteModal(false)}
+        trackingID={tracking._id}
+        deleteRecord={deleteTracking}
       />
     </Container>
   );

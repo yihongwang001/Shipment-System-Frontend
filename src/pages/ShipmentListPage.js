@@ -9,7 +9,7 @@ import '../styles/ShipmentListPage.css';
 
 function ShipmentListPage() {
   const [trackings, setTrackings] = useState([]);
-
+  const [tab, setTab] = useState('tracking');
   const getTrackings = async () => {
     let trackings = [];
     try {
@@ -83,6 +83,7 @@ function ShipmentListPage() {
     const newTrackings = [value, ...trackings];
     setTrackings(newTrackings);
     alert('One tracking record is added successfully!');
+    setTab('tracking');
   }
 
   return (
@@ -91,7 +92,7 @@ function ShipmentListPage() {
         <h1 className="greeting">
           Hello, {JSON.parse(localStorage.getItem('loginInfo')).username}
         </h1>
-        <Tabs defaultActiveKey="tracking">
+        <Tabs activeKey={tab} onSelect={(currTab) => setTab(currTab)}>
           <Tab eventKey="new-tracking" title="New Tracking">
             <ShipmentForm onCreateSuccess={addTracking} />
           </Tab>
