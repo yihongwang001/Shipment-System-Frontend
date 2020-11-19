@@ -87,7 +87,7 @@ function ShipmentListPage() {
   }
 
   return (
-    <div className="shipment-list">
+    <main className="shipment-list">
       <Container>
         <h1 className="greeting">
           Hello, {JSON.parse(localStorage.getItem('loginInfo')).username}
@@ -121,7 +121,7 @@ function ShipmentListPage() {
           </Tab>
         </Tabs>
       </Container>
-    </div>
+    </main>
   );
 }
 
