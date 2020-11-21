@@ -30,10 +30,3 @@
 .brand {
   color: #322824 !important;
 }
-
-.sign-button {
-  font-size: medium;
-  border: 1px solid #322824;
-  border-radius: 15px;
-  cursor: pointer;
-}

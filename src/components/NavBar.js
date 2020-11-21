@@ -1,7 +1,7 @@
 /*eslint-disable no-unused-vars*/
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Button, Nav, Navbar } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
 import '../styles/NavBar.css';
 
@@ -53,16 +53,13 @@ const NavBar = () => {
               <Nav.Link href="/shipment-list">My Shipments</Nav.Link>
             </Nav.Item>
           </Nav>
-          <Nav.Item
+          <Button
+            variant="outline-secondary"
             onClick={handleClick}
-            className="p-1 sign-button"
-            tabIndex={0}
-            onKeyPress={(event) => {
-              if (event.key === 'Enter') handleClick();
-            }}
+            className="p-1"
           >
             {loggedIn.loggedIn ? 'Sign Out' : 'Sign In'}
-          </Nav.Item>
+          </Button>
         </Navbar.Collapse>
       </Navbar>
     </>
