@@ -1,18 +1,17 @@
 .homepage-container {
   background-image: url(../background.jpeg);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  align-items: center;
 }
 
 .slogan-container {
   position: fixed;
-}
-
-.home-content {
-  position: relative;
 }
 
 .slogan-container h1 {

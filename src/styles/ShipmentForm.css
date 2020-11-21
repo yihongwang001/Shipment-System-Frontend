@@ -16,7 +16,7 @@
   outline: 0 none;
 }
 
-input[type='text']:focus {
+.shipment-form input[type='text']:focus {
   border-color: #b28c69;
   box-shadow: 0 3px 3px #b28c69;
   outline: 0 none;
