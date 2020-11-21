@@ -1,25 +1,33 @@
 .homepage-container {
+  background-image: url(../background.jpeg);
   min-height: 100vh;
-  background: -webkit-linear-gradient(
-    to top,
-    #636fa4,
-    #e8cbc0
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #636fa4,
-    #e8cbc0
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: white;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.slogan-container {
+  position: fixed;
+}
+
+.home-content {
+  position: relative;
 }
 
 .slogan-container h1 {
+  margin-top: 0;
+  color: #322824;
+  opacity: 0.8;
   font-size: 50px;
   font-family: 'Staatliches', cursive;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.1);
 }
 
-.slogan-container h2 {
+.slogan-container h4 {
+  color: #b28c69;
   font-size: 30px;
   font-family: 'Open Sans Condensed', sans-serif;
-  letter-spacing: 1px;
+  font-weight: bold;
+  text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
 }

@@ -1,7 +1,7 @@
 /*eslint-disable no-unused-vars*/
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import LoggedIn from '../components/LoginContext';
 import '../styles/NavBar.css';
 
@@ -39,14 +39,10 @@ const NavBar = () => {
   return (
     <>
       <JumpToMainContent />
-      <Navbar
-        className="navbar"
-        bg="light"
-        variant="light"
-        expand="lg"
-        sticky="top"
-      >
-        <Navbar.Brand href="/">ShipCare</Navbar.Brand>
+      <Navbar className="navbar" expand="lg" sticky="top">
+        <Navbar.Brand href="/" className="brand">
+          ShipCare
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -57,13 +53,16 @@ const NavBar = () => {
               <Nav.Link href="/shipment-list">My Shipments</Nav.Link>
             </Nav.Item>
           </Nav>
-          <Button
-            variant="outline-secondary"
+          <Nav.Item
             onClick={handleClick}
-            className="p-1"
+            className="p-1 sign-button"
+            tabIndex={0}
+            onKeyPress={(event) => {
+              if (event.key === 'Enter') handleClick();
+            }}
           >
             {loggedIn.loggedIn ? 'Sign Out' : 'Sign In'}
-          </Button>
+          </Nav.Item>
         </Navbar.Collapse>
       </Navbar>
     </>
