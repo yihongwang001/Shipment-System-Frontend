@@ -3,12 +3,3 @@
   border: none;
   box-shadow: 0 0 3pt 2pt #32282470;
 }
-
-input[type='text']:focus,
-input[type='email']:focus,
-input[type='password']:focus,
-input[type='url']:focus {
-  border-color: #b28c69;
-  box-shadow: 0 3px 3px #b28c69;
-  outline: 0 none;
-}

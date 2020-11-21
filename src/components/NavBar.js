@@ -39,7 +39,7 @@ const NavBar = () => {
   return (
     <>
       <JumpToMainContent />
-      <Navbar className="navbar" expand="lg" sticky="top">
+      <Navbar className="navbar" bg="light" expand="lg" sticky="top">
         <Navbar.Brand href="/" className="brand">
           ShipCare
         </Navbar.Brand>

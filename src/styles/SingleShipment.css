@@ -55,6 +55,7 @@
 /* effects for done-icon */
 .active-record .done-icon {
   font-size: 20px;
+  color: #555555;
 }
 
 .active-record .done-icon:hover,
@@ -88,6 +89,7 @@
 .active-record .delete-icon {
   margin-left: 15px;
   font-size: 20px;
+  color: #555555;
 }
 
 .active-record .delete-icon:hover,
