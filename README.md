@@ -24,6 +24,8 @@ This is the front-end of a delivery tracking system. People could get the latest
 ![shipments](./screenshots/ShipCare_shipments.png 'shipments')
 ![shipment_progress](./screenshots/ShipCare_shipment_progress.png 'shipment progress')
 
+Background image by [@Leone Venter](https://unsplash.com/@fempreneurstyledstock) on Unsplash.
+
 ## How to build
 
 ```
