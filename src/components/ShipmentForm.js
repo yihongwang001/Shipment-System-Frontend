@@ -97,7 +97,11 @@ const ShipmentForm = (props) => {
         />
       </Form.Group>
 
-      <Button variant="secondary" onClick={() => addTracking()}>
+      <Button
+        className="add-button"
+        variant="secondary"
+        onClick={() => addTracking()}
+      >
         Add Tracking
       </Button>
     </Form>
