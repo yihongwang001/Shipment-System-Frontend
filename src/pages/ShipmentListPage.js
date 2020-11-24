@@ -4,8 +4,13 @@ import { Tabs, Tab, Container } from 'react-bootstrap';
 import ShipmentForm from '../components/ShipmentForm';
 import SingleShipment from '../components/SingleShipment';
 import OldShipment from '../components/OldShipment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faShippingFast } from '@fortawesome/free-solid-svg-icons';
 import '../styles/ShipmentListPage.css';
 /*eslint-enable no-unused-vars*/
+
+library.add(faShippingFast);
 
 function ShipmentListPage() {
   const [trackings, setTrackings] = useState([]);
@@ -90,7 +95,8 @@ function ShipmentListPage() {
     <main className="shipment-list">
       <Container>
         <h1 className="greeting">
-          Hello, {JSON.parse(localStorage.getItem('loginInfo')).username}
+          <FontAwesomeIcon icon="shipping-fast" /> Hello,{' '}
+          {JSON.parse(localStorage.getItem('loginInfo')).username}
         </h1>
         <Tabs activeKey={tab} onSelect={(currTab) => setTab(currTab)}>
           <Tab eventKey="new-tracking" title="New Tracking">

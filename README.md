@@ -25,6 +25,8 @@ This is the front-end of a delivery tracking system. People could get the latest
 ![shipment_progress](./screenshots/ShipCare_Progress.png 'shipment progress')
 ![deletion_modal](./screenshots/ShipCare_deletion_modal.png 'delete')
 
+Background image by [@Leone Venter](https://unsplash.com/@fempreneurstyledstock) on Unsplash.
+
 ## How to build
 
 ```

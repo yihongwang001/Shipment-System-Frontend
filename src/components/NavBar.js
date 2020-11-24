@@ -39,14 +39,10 @@ const NavBar = () => {
   return (
     <>
       <JumpToMainContent />
-      <Navbar
-        className="navbar"
-        bg="light"
-        variant="light"
-        expand="lg"
-        sticky="top"
-      >
-        <Navbar.Brand href="/">ShipCare</Navbar.Brand>
+      <Navbar className="navbar" bg="light" expand="lg" sticky="top">
+        <Navbar.Brand href="/" className="brand">
+          ShipCare
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

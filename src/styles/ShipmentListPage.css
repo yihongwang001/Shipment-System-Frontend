@@ -2,20 +2,11 @@
 
 .shipment-list {
   height: 100vh;
-  background: -webkit-linear-gradient(
-    to top,
-    #636fa4,
-    #e8cbc0
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #636fa4,
-    #e8cbc0
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: #d9d9d9;
 }
 
 .shipment-list .nav-tabs a {
-  color: #333333;
+  color: #322824;
 }
 
 .shipment-list .nav-tabs .nav-item:focus {
@@ -23,7 +14,7 @@
 }
 
 .shipment-list .greeting {
-  color: #333333;
+  color: #322824;
   padding: 25px 10px 10px 10px;
   text-transform: capitalize;
   font-family: 'Rubik', sans-serif;
