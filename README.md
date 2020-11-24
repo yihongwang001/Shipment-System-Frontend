@@ -19,10 +19,11 @@ This is the front-end of a delivery tracking system. People could get the latest
 
 ## Screenshots
 
-![homepage](./screenshots/ShipCare_homepage.png 'homepage')
-![login](./screenshots/ShipCare_login.png 'login')
-![shipments](./screenshots/ShipCare_shipments.png 'shipments')
-![shipment_progress](./screenshots/ShipCare_shipment_progress.png 'shipment progress')
+![homepage](./screenshots/ShipCare_Homepage.png 'homepage')
+![login](./screenshots/ShipCare_Login.png 'login')
+![shipments](./screenshots/ShipCare_shipment_list.png 'shipments')
+![shipment_progress](./screenshots/ShipCare_Progress.png 'shipment progress')
+![deletion_modal](./screenshots/ShipCare_deletion_modal.png 'delete')
 
 ## How to build
 
