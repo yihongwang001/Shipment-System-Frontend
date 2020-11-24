@@ -46,7 +46,7 @@ const LoginPage = (props) => {
       redirect: 'follow',
       body: formBody,
     });
-
+<!-- great work! maybe add try catch error around await to help show errors --!>
     const responseJson = await response.json();
 
     console.log(response.status);
